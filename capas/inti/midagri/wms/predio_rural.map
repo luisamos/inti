@@ -1,0 +1,52 @@
+LAYER
+  NAME "predio_rural"
+  GROUP "MIDAGRI"
+  MAXSCALE -1.0
+  MINSCALE -1.0
+  TYPE polygon
+  PROCESSING 'LABEL_NO_CLIP=1' 
+  DUMP true
+  HEADER   "plantillas/inicio.html"
+  TEMPLATE "plantillas/inti/midagri/predio_rural.html"
+  FOOTER   "plantillas/fin.html"
+  STATUS on
+  TRANSPARENCY 100
+  DATA "geom FROM (SELECT gid, id_dist, cod_predio, num_predio, cod_pred_1, area_ha, geom FROM midagri.predio_rural) as inti using unique gid using srid=4326"
+  #FILTER ('[anp_felec]'<='2015-11-09')
+  #FILTER "([anp_felec] <= '2015-11-09')"
+  INCLUDE "configuracion/postgresql_inti.map"
+  PROJECTION
+   "init=epsg:4326"
+  END
+  CLASSITEM "gid"
+  LABELMAXSCALEDENOM 2000000
+  LABELMAXSCALE 2000000
+  METADATA
+  "wms_group_title" "MIDAGRI"  
+  "queryable" "true"
+  "wms_metadataurl_href" "LUISAMOS"
+  "wms_metadataurl_format" "text/xml"        
+  "wms_metadataurl_type" "TC211"
+  "wms_title" "Predio Rural"
+  "wms_abstract" "Predio Rural || Ministerio de Desarrollo Agrario y Rural - MIDAGRI :: Perú"
+  "wms_credit" "MIDAGRI"
+  "wms_dataurl" ""
+  "wms_dataurl_format" "text/html"
+  "wms_dataurl_href" ""
+  "autor" "INTI - 2022" 
+  "wms_extent" "-78.911969039 -13.174006996 -68.672677514 -0.0422453909999945"      
+  "wms_srs" "EPSG:4326"  
+  "wms_include_items" "all"
+  "wms_exclude_items" "gid"
+  "wms_enable_request" "*"
+ END
+ CLASS
+  NAME "Predio Rural"
+  EXPRESSION /./
+  STYLE
+    COLOR 0 0 0
+    OUTLINECOLOR 230 230 0
+    WIDTH 1     
+  END   
+ END 
+END # Layer

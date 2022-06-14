@@ -1,0 +1,32 @@
+LAYER
+  NAME "comunidades_campesinas"
+  TYPE polygon
+  DUMP true
+  STATUS on
+  DATA "geom FROM (SELECT gid, nom_dpto, nom_prov, nom_dist, id_dist, nom_comuni, estado, fuente, geom FROM midagri.comunidades_campesinas) as midagri using unique gid using srid=4326"
+  INCLUDE "configuracion/postgresql_inti.map"
+  PROJECTION
+	"init=epsg:4326"
+  END
+  METADATA
+	"layer_encoding" "Latin1"	
+	"wfs_encoding" "Latin1" 
+	"queryable" "true"
+	"wfs_abstract" "MIDAGRI - Catastro Rural, comunidadades campesinas :: Perú"
+	"wfs_title"         "comunidades_campesinas"
+	"wfs_srs"           "EPSG:4326"
+	"gml_include_items" "all"
+	"gml_featureid"     "gid"
+	"wfs_enable_request" "*"
+	"wfs_getfeature_formatlist" "OGRGML,SHAPE-ZIP,CSV"
+	#"wfs_additional_files_in_output" "anp_administracion_nacional.pdf,anp_administracion_nacional.lyr"	
+ END
+ CLASS
+  NAME 'Comunidades Campesinas'
+  STYLE
+    COLOR 255 167 127
+    OUTLINECOLOR 230 0 0
+    WIDTH 1     
+  END
+END
+END # Layer

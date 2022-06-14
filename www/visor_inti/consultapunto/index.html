@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>GeoServicios</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pe-icon-7-stroke.css">
+
+  <link rel="stylesheet" href="https://js.arcgis.com/3.28/esri/css/esri.css">
+
+</head>
+<body data-x="" class="app administrador">
+  
+
+	<div id="wrap">
+    <div class="header-app">
+      <header class="inner-header">
+          <div class="container pad">
+            <div class="masthead-left">
+              <div class="logos">
+                <!--  -->
+              </div>
+              <div class="title-menu">GeoServicios</div>
+            </div>
+            <div class="masthead-center"></div>
+            <div class="masthead-right">
+              <div class="user-login">
+                <div class="image-user">
+                  <img src="img/user.svg" alt="">
+                </div>
+                <div class="info-user">
+                  
+                  <a href="#" id="btnLogout" class="exit-app-link">Salir</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+    </div>
+    <div id="content" role="main">
+
+        <div class="sidebar">
+          <div class="menu-block">
+            <div class="menu-list">
+              
+              <a href="#">
+                <div class="item-list active">
+                  <div class="icon-item">
+                    <!-- <i class="pe-7s-hand"></i> -->
+                  </div>
+                  <div class="title-item">
+                    Consulta superposición
+                  </div>
+                </div>
+              </a>
+                          
+            </div>
+          </div>
+        </div>
+
+        <div class="content-app">
+          <!--div class="header-block-app">
+            <div class="title-app">Módulo de monitoreo de acciones</div>
+          </div-->
+          <div class="main-app">
+            <div class="head-main-app">
+              <div class="ico-module-app">
+                <!-- <i class="pe-7s-bell"></i> -->
+              </div>
+              <div class="left-module-app">
+                
+                <div class="title-module"> Consultar superposición</div>
+                
+                <div class="description-app">
+                  
+                </div>
+              </div>
+            </div>
+
+
+            
+
+            <div class="row">
+              
+              <div id="test1" class="col s12">
+
+                <div class="row-rol">
+
+                  <div class="cell-grid1">
+                    <img id="loadingImg" src="img/waiting.gif" style="display: none; position:absolute; left: 40%; top: 30% ;  z-index:100; width:150px; padding-right:45px; padding-top:30px;" /> 
+                    <div class="map-notification" id="map"></div>
+                  </div>
+
+                  <div class="separator-cell">
+                   <!--  <i class="pe-7s-angle-right"></i> -->
+                  </div>
+
+                  <div class="cell-grid2">
+                    
+                    
+                    <div id="divGrabarInc" style="display: block;margin-top: 10px;">
+                      <center><b> Ingresar datos de consulta</b></center> 
+                      
+                      <div style="background-color: white !important;" class="col s12">
+                        <p><b><code class="markup">I.</code> Ubicación</b></p>
+                      </div>
+
+
+                      <br><br>
+
+                      <div style=" padding-top: 5px; margin-top: 5px; width: 100%;   align-items: center;    margin-bottom: 5px;    background: #eee;    border-radius: 5px; padding: 10px;"><br>
+
+                        <div  class="tab">
+                          <button class="tablinks " id="btnTabTeclado" >INGRESAR COORDENADA</button>
+                          <button class="tablinks"  id="btnTabMapa" >UBICAR EN MAPA</button>
+                          <button class="tablinks"  id="btnTabCarga" >CARGAR ARCHIVO</button>
+                        </div>
+                        <br>
+
+                        <!-- Tab content -->
+                        <div id="tabTecla" class="tabcontent" style="height: 150px !important; font-size: 13px !important;">
+
+                             <table><tr><td>Proyección:
+                                  <select id="cboProyeccion" style="width: 150px !important;" class="browser-default inline-input">                                
+                                    <option value="1" selected>Geográficas</option>
+                                    <option value="2">UTM</option>
+                                  </select></td>
+                                  <td id="tdZona" style="display: none;">
+                                    Zona:
+                                     <select id="cboZona" style="width: 150px !important; display: none;" class="browser-default inline-input">
+                                      <option value="32717"  selected>17</option>
+                                      <option value="32718">18 </option>
+                                      <option value="32719">19</option>
+                                    </select>
+
+                                  </td>
+ 
+                                </tr></table>
+                              <!-- <div class="cell"> -->
+                                 
+
+                                <span class="lbl-t">Latitud:</span>
+                                <input type="text" id="txtLat" style="width:100px; " />
+                                <span class="lbl-t">Longitud:</span>
+                                <input type="text" id="txtLon" style="width:100px; " />
+
+                                <a href="#" id="btnGraficarIncid" class="btnx btnx btnx-w-md btnx-accent">Graficar</a>
+                             <!--  </div> -->
+
+                              
+                         
+                        </div>
+
+                        <div id="tabMapa" style="font-size: 13px;" class="tabcontent">
+                         
+                          <p>seleccione el icono ubicar y luego indique el lugar haciendo click en el mapa
+                           <span id="elemClickMapa" style="font-size: 20px; color:red; font-weight: bold; cursor: pointer; " class="pe-7s-map-marker"></span>
+                           </p>
+                  
+                        </div>
+
+                        <div id="tabCarga" style="font-size: 13px;" class="tabcontent">
+                          Seleccionar tipo de archivo
+                          <select id="cboTipoArchivo" style="width: 250px !important; font-size: 15px !important; display: none;" class="browser-default inline-input">
+                              <option value="1"  selected>Shape File</option>
+                              <!-- <option value="2"> Csv ( wgs84 geográficas) </option>
+                              <option value="3"> Csv ( wgs84 utm, zona 17) </option>
+                              <option value="4"> Csv ( wgs84 utm, zona 18) </option>
+                              <option value="5"> Csv ( wgs84 utm, zona 19) </option> -->
+                          </select>
+                         
+                         <!--  Cargar archivo (shape-file, kml, csv) &nbsp; -->
+                          <form enctype="multipart/form-data" style="margin-top: 15px;" method="post" id="uploadFormAdjunta">                     
+                            <input type="file" name="file" style="font-size:14px;"  id="inAdjunto" />          
+                          </form>
+
+                        
+                        </div>
+
+
+                      </div>
+
+
+                      <center><a href="#" id="btnGrabarIncid" class="btnx btnx btnx-w-md btnx-accent btnx-rounded"> ANALIZAR</a> </center>
+
+
+
+                      
+
+                      
+                      
+
+
+                      
+        
+                      
+
+                    </div> 
+
+
+                  </div> 
+
+               
+                </div>
+                              
+
+              </div>
+              
+            </div>                  
+
+          </div>
+        </div>       
+    </div>
+  </div>
+
+  
+  <script src="https://js.arcgis.com/3.28/"></script>
+  
+  <script src="js/lib/libs.js"></script>
+  <script src="js/materialize.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/reportar.js" type="text/javascript"></script>
+</body>
+</html>

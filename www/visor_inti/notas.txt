@@ -1,0 +1,30 @@
+http://127.0.0.2/servicio/wms?SERVICE=WMS&
+VERSION=1.1.1&
+LAYERS=comunidades_nativas&
+QUERY_LAYERS=comunidades_nativas&
+REQUEST=GetFeatureInfo&
+SRS=EPSG:4326&
+STYLES=&
+BBOX=-74.45314083089261,-11.549021431981757,-73.89352474202542,-11.07771059571166&
+X=515.75&
+Y=181FORMAT=image/png&
+TRANSPARENT=true&
+INFO_FORMAT=text/html&
+&
+WIDTH=815&
+HEIGHT=700
+
+
+515.75
+239.7487763888889
+
+
+181
+393.5252222222222
+
+
+WMS (vector)::::: filtros Mapserver
+
+WFS (vector)..... FeatureServer
+
+WCS (raster)..... filtros ImageServer

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>INTI Perú</title>
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/pe-icon-7-stroke.css">
+  <link rel="stylesheet" href="css/leaflet.css">
+  <link rel="stylesheet" href="css/leaflet-navbar.css">
+  <link href="css/visor.css" rel="stylesheet" />
+</head>
+<body data-x="" class="app administrador">
+	<div id="wrap">
+    <div class="header-app">
+      <header class="inner-header">
+          <div class="container pad">
+            <div class="masthead-left">
+              <div class="logos">
+                <!--  -->
+              </div>
+              <div class="title-menu">Plataforma de consulta de información territorial - INTI Perú</div>
+            </div>
+            <div class="masthead-center"></div>
+            <div class="masthead-right">
+              <div class="user-login">
+                <div class="image-user">
+                  <img src="img/user.svg" alt="">
+                </div>
+                <div class="info-user">
+                  
+                  <a href="#" id="btnSalir" class="exit-app-link">Salir</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+    </div>
+    <div id="content" role="main">
+      <div class="sidebar">
+        <div class="menu-block">
+          <div class="menu-list">            
+            <a href="#">
+              <div class="item-list active">
+                <div class="icon-item">
+                  <!-- <i class="pe-7s-hand"></i> -->
+                </div>
+                <div class="title-item">
+                  Capas de información
+                </div>
+              </div>
+            </a>
+
+            <div class="item-list">
+                <div class="title-item">
+                  <label>
+                    <input type="checkbox" class="filled-in" checked="checked" id="comunidades_campesinas"/>
+                    <span>Comunidades Campesinas</span><span class="new badge"></span>
+                  </label>
+                  <label>
+                    <input type="checkbox" class="filled-in" checked="checked" id="comunidades_nativas"/>
+                    <span>Comunidades Nativas</span><span class="new badge"></span>
+                  </label>
+                  <label>
+                    <input type="checkbox" class="filled-in" id="predio_rural"/>
+                    <span>Predio Rural</span><span class="new badge"></span>
+                  </label>
+                </div>
+              </div>
+            </a>       
+          </div>
+        </div>
+      </div>
+
+      <div class="content-app">
+        <div class="main-app">
+          <div class="head-main-app">
+            <div class="ico-module-app">
+              <!-- <i class="pe-7s-bell"></i> -->
+            </div>
+            <div class="left-module-app">
+              
+              <div class="title-module"></div>
+              
+              <div class="description-app">
+                
+              </div>
+            </div>
+          </div>        
+
+          <div class="row">            
+            <div id="test1" class="col s12">
+              <div class="row-rol">
+                <div class="cell-grid1">
+                  <img id="loadingImg" src="img/waiting.gif" style="display: none; position:absolute; left: 40%; top: 30% ;  z-index:100; width:150px; padding-right:45px; padding-top:30px;" /> 
+                  <div class="map-notification" id="map"></div>
+                </div>
+                <div class="separator-cell">
+                 <!--  <i class="pe-7s-angle-right"></i> -->
+                </div>
+                <div class="cell-grid2">
+                  <div id="divGrabarInc" style="display: block;margin-top: 10px;">
+                                    
+                    <div style="background-color: white !important;" class="col s12">
+                      <p><b><code class="markup">I.</code> Ingresar datos a consultar</b></p>
+                    </div>
+                    <br><br>
+                    <div style="padding-top: 5px; margin-top: 5px; width: 100%;   align-items: center;    margin-bottom: 5px;    background: #eee;    border-radius: 5px; padding: 10px;"><br>
+                      <div  class="tab">
+                        <button class="tablinks " id="btnTabTeclado" >Ingresar coordenadas</button>
+                        <button class="tablinks"  id="btnTabMapa" >Ubicar en el mapa</button>
+                        <button class="tablinks"  id="btnTabCarga" >Cargar un archivo</button>
+                      </div>
+
+                      <!-- Tab content -->
+                      <div id="tabTecla" class="tabcontent" style="height: 150px !important; font-size: 13px !important;">
+                          <table>
+                            <tr>
+                              <td>Proyección:
+                                <select id="cboProyeccion" style="width: 150px !important;" class="browser-default inline-input">                                
+                                  <option value="1" selected>Geográficas</option>
+                                  <option value="2">UTM</option>
+                                </select>
+                              </td>
+                              <td id="tdZona" style="display: none;">Zona:
+                                <select id="cboZona" style="width: 150px !important; display: none;" class="browser-default inline-input">
+                                  <option value="32717"  selected>17</option>
+                                  <option value="32718">18 </option>
+                                  <option value="32719">19</option>
+                                </select>
+                            </td>
+                            </tr>
+                          </table>
+                            <!-- <div class="cell"> -->
+                              <span class="lbl-t">Latitud:</span>
+                              <input type="text" id="txtLatitud" style="width:100px; " />
+                              <span class="lbl-t">Longitud:</span>
+                              <input type="text" id="txtLongitud" style="width:100px; " />
+                              <a href="#" id="btnGraficar" class="btnx btnx btnx-w-md btnx-accent"><span id="elemClickMapa" style="font-size: 15px; color:green; font-weight: bold; cursor: pointer; " class="pe-7s-map-marker"></span>Graficar</a>
+
+                           <!--  </div> -->
+                      </div>
+                      <div id="tabMapa" style="font-size: 13px;" class="tabcontent">
+                        <p>Seleccione el icono ubicar y luego indique el lugar haciendo click en el mapa
+                         <span id="elemClickMapa" style="font-size: 20px; color:green; font-weight: bold; cursor: pointer; " class="pe-7s-map-marker"></span>
+                        </p>                
+                      </div>
+                      <div id="tabCarga" style="font-size: 13px;" class="tabcontent">
+                        Seleccionar tipo de archivo
+                        <select id="cboTipoArchivo" style="width: 250px !important; font-size: 15px !important; display: none;" class="browser-default inline-input">
+                            <option value="1"  selected>Shape File</option>                            
+                        </select>                       
+                       <!--  Cargar archivo (shape-file, kml, csv) &nbsp; -->
+                        <form enctype="multipart/form-data" style="margin-top: 15px;" method="post" id="uploadFormAdjunta">                     
+                          <input type="file" name="file" style="font-size:14px;"  id="inAdjunto" />          
+                        </form>                      
+                      </div>
+                    </div>
+                    <center><a href="#" id="btnConsultar" class="btnx btnx btnx-w-md btnx-accent btnx-rounded"> Consultar</a> </center>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cell-grid2" id="tabla">     
+              </div>
+
+            </div>            
+          </div>
+        </div>
+      </div>       
+    </div>
+  </div>
+  <script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <script type="text/javascript" src="js/leaflet.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/esri-leaflet@3.0.8/dist/esri-leaflet.js" integrity="sha512-E0DKVahIg0p1UHR2Kf9NX7x7TUewJb30mxkxEm2qOYTVJObgsAGpEol9F6iK6oefCbkJiA4/i6fnTHzM6H1kEA==" crossorigin=""></script>
+  <script type="text/javascript" src="js/leaflet-utm.js"></script>
+  <script type="text/javascript" src="js/leaflet-navbar.js"></script>
+  <script type="text/javascript" src="js/proj4.js"></script>
+  <script type="text/javascript" src="js/lib/libs.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>  
+  <script type="text/javascript" src="js/visor.js" ></script>
+</body>
+</html>
